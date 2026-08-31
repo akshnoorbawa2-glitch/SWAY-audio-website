@@ -1,120 +1,69 @@
 /* ==========================================================
-   SWAY — Tactile Dual-App Reaction Engine
+   SWAY — Session Manager Interactive Simulation Logic
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // DOM Elements: Controls & Triggers
-  const btnPlayTrigger = document.getElementById('btn-play-trigger');
-  const playSvg = document.getElementById('play-svg');
-  const playBtnLabel = document.getElementById('play-btn-label');
-  const presetButtons = document.querySelectorAll('.preset-btn');
+  // Control Elements
+  const btnTestDucking = document.getElementById('btn-test-ducking');
+  const testDuckingLabel = document.getElementById('test-ducking-label');
+  const liveIndicatorBadge = document.getElementById('live-indicator-badge');
+  const liveIndicatorText = document.getElementById('live-indicator-text');
 
-  // DOM Elements: Stage & Bridge Indicators
-  const stageDot = document.getElementById('stage-dot');
-  const stageStatusTitle = document.getElementById('stage-status-title');
-  const bridgeBadge = document.getElementById('bridge-badge');
-  const bridgeText = document.getElementById('bridge-text');
+  // Trigger Session Elements (Chrome)
+  const triggerSubtext = document.getElementById('trigger-subtext');
+  const meterTriggerFill = document.getElementById('meter-trigger-fill');
+  const triggerMeterLabel = document.getElementById('trigger-meter-label');
 
-  // DOM Elements: Music Player Window (Spotify / Target)
-  const musicFaderFill = document.getElementById('music-fader-fill');
-  const musicFaderThumb = document.getElementById('music-fader-thumb');
-  const musicVolLabel = document.getElementById('music-vol-label');
-  const duckCallout = document.getElementById('duck-callout');
-  const duckCalloutText = document.getElementById('duck-callout-text');
-  const musicWaveBars = document.querySelectorAll('#music-wave-bars span');
-  const vinylDisc = document.getElementById('vinyl-disc');
+  // Target Session Elements (Spotify)
+  const spotifySliderFill = document.getElementById('spotify-slider-fill');
+  const spotifySliderThumb = document.getElementById('spotify-slider-thumb');
+  const spotifyVolLabel = document.getElementById('spotify-vol-label');
+  const targetRoleBadge = document.getElementById('target-role-badge');
+  const statusDuckFactor = document.getElementById('status-duck-factor');
 
-  // DOM Elements: Video Player Window (Trigger Source)
-  const videoProgress = document.getElementById('video-progress');
-  const videoAudioLabel = document.getElementById('video-audio-label');
-  const videoLevelBars = document.querySelectorAll('#video-level-bars span');
-
-  // Simulation State
+  // State
   let isPlaying = false;
-  let targetDuckFactor = 0.40; // 40% default
-  let currentMusicVol = 100;
-  let animProgress = 0;
+  let currentVol = 100;
+  const targetDuckVol = 40;
   let restoreTimeout = null;
-  let loopFrameId = null;
+  let animationFrameId = null;
 
-  // Preset Button Switching
-  presetButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      presetButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const val = parseInt(btn.getAttribute('data-val'), 10);
-      targetDuckFactor = val / 100;
-
-      if (isPlaying) {
-        currentMusicVol = val;
-        updateMusicFaderUI(val);
-      }
-    });
-  });
-
-  function updateMusicFaderUI(volPercent) {
-    if (musicFaderFill) musicFaderFill.style.width = `${volPercent}%`;
-    if (musicFaderThumb) musicFaderThumb.style.left = `${volPercent}%`;
-    if (musicVolLabel) musicVolLabel.textContent = `${Math.round(volPercent)}%`;
+  function updateSlider(vol) {
+    if (spotifySliderFill) spotifySliderFill.style.width = `${vol}%`;
+    if (spotifySliderThumb) spotifySliderThumb.style.left = `${vol}%`;
+    if (spotifyVolLabel) spotifyVolLabel.textContent = `Volume: ${Math.round(vol)}%`;
   }
 
-  // Animation Loop for Waveforms & Dynamic Scrubbing
-  function simulationTick(timestamp) {
+  function animationLoop(timestamp) {
     if (isPlaying) {
-      // 1. Scrub progress
-      animProgress = (animProgress + 0.15) % 100;
-      if (videoProgress) videoProgress.style.width = `${animProgress}%`;
+      // 1. Simulate active trigger output bouncing
+      const meterVal = 55 + Math.sin(timestamp * 0.008) * 35 + Math.random() * 8;
+      if (meterTriggerFill) meterTriggerFill.style.width = `${Math.min(100, Math.max(15, meterVal))}%`;
 
-      // 2. Video audio output bouncing
-      if (videoAudioLabel) videoAudioLabel.textContent = 'Active Audio Output';
-      videoLevelBars.forEach((bar, i) => {
-        const active = Math.sin(timestamp * 0.008 + i) > -0.2;
-        bar.style.backgroundColor = active ? '#10b981' : '#24242e';
-      });
-
-      // 3. Music wave compression (ducked)
-      musicWaveBars.forEach((bar, i) => {
-        const height = (15 + Math.sin(timestamp * 0.004 + i) * 10) * (targetDuckFactor / 0.4);
-        bar.style.height = `${Math.max(6, height)}px`;
-        bar.style.opacity = '0.5';
-      });
-
-      // 4. Smooth volume slide down
-      const targetVol = targetDuckFactor * 100;
-      if (currentMusicVol > targetVol) {
-        currentMusicVol -= (currentMusicVol - targetVol) * 0.1;
-        updateMusicFaderUI(currentMusicVol);
+      // 2. Smooth volume slide down to 40%
+      if (currentVol > targetDuckVol) {
+        currentVol -= (currentVol - targetDuckVol) * 0.12;
+        if (Math.abs(currentVol - targetDuckVol) < 0.5) currentVol = targetDuckVol;
+        updateSlider(currentVol);
       }
-
     } else {
-      // Idle state / Restored
-      if (videoAudioLabel) videoAudioLabel.textContent = 'Silent (Paused)';
-      videoLevelBars.forEach(bar => {
-        bar.style.backgroundColor = '#24242e';
-      });
+      // 1. Trigger output idle
+      if (meterTriggerFill) meterTriggerFill.style.width = '0%';
 
-      // Full music wave animation
-      musicWaveBars.forEach((bar, i) => {
-        const height = 8 + Math.sin(timestamp * 0.006 + i) * 8 + 4;
-        bar.style.height = `${Math.max(4, height)}px`;
-        bar.style.opacity = '1';
-      });
-
-      // Smooth volume slide back up
-      if (currentMusicVol < 100) {
-        currentMusicVol += (100 - currentMusicVol) * 0.08;
-        if (Math.abs(100 - currentMusicVol) < 0.5) currentMusicVol = 100;
-        updateMusicFaderUI(currentMusicVol);
+      // 2. Smooth volume slide back up to 100%
+      if (currentVol < 100) {
+        currentVol += (100 - currentVol) * 0.09;
+        if (Math.abs(100 - currentVol) < 0.5) currentVol = 100;
+        updateSlider(currentVol);
       }
     }
 
-    loopFrameId = requestAnimationFrame(simulationTick);
+    animationFrameId = requestAnimationFrame(animationLoop);
   }
 
-  // Toggle Video Playback Interaction
-  if (btnPlayTrigger) {
-    btnPlayTrigger.addEventListener('click', () => {
+  if (btnTestDucking) {
+    btnTestDucking.addEventListener('click', () => {
       if (restoreTimeout) {
         clearTimeout(restoreTimeout);
         restoreTimeout = null;
@@ -123,41 +72,35 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isPlaying) {
         // Start Video Playback -> Duck Music
         isPlaying = true;
-        btnPlayTrigger.classList.add('playing');
-        playBtnLabel.textContent = 'Pause Video';
-        playSvg.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        btnTestDucking.classList.add('playing');
+        if (testDuckingLabel) testDuckingLabel.textContent = 'Stop Video Simulation';
 
-        if (stageDot) stageDot.classList.add('active');
-        if (stageStatusTitle) stageStatusTitle.textContent = 'VIDEO DETECTED • SWAY ACTIVELY DUCKING MUSIC';
-        if (bridgeBadge) bridgeBadge.classList.add('active');
-        if (bridgeText) bridgeText.textContent = `SWAY DUCKED (-${Math.round((1 - targetDuckFactor) * 100)}%)`;
-
-        if (duckCallout) duckCallout.classList.add('active');
-        if (duckCalloutText) duckCalloutText.textContent = `Ducked to ${Math.round(targetDuckFactor * 100)}% • Video Audible`;
+        if (liveIndicatorText) liveIndicatorText.textContent = 'Trigger Active • Ducking Spotify';
+        if (triggerSubtext) triggerSubtext.textContent = 'PID 14280 • YouTube Video Stream (Playing Audio)';
+        if (triggerMeterLabel) triggerMeterLabel.textContent = '-6 dB (Active)';
+        if (targetRoleBadge) targetRoleBadge.textContent = 'Ducked to 40%';
+        if (statusDuckFactor) statusDuckFactor.textContent = 'Duck Target: 40% (Active)';
 
       } else {
-        // Pause Video Playback -> Restoring Music
+        // Stop Video Playback -> Restoring Music
         isPlaying = false;
-        btnPlayTrigger.classList.remove('playing');
-        playBtnLabel.textContent = 'Play Video';
-        playSvg.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+        btnTestDucking.classList.remove('playing');
+        if (testDuckingLabel) testDuckingLabel.textContent = 'Simulate Video Playback';
 
-        if (stageStatusTitle) stageStatusTitle.textContent = 'VIDEO PAUSED • RESTORING MUSIC...';
-        if (bridgeText) bridgeText.textContent = 'RESTORING AUDIO...';
-        if (duckCalloutText) duckCalloutText.textContent = 'Restoring volume in 1.5s...';
+        if (liveIndicatorText) liveIndicatorText.textContent = 'Audio Ended • Restoring...';
+        if (triggerSubtext) triggerSubtext.textContent = 'PID 14280 • YouTube Video Stream (Silent)';
+        if (triggerMeterLabel) triggerMeterLabel.textContent = 'Silent';
+        if (targetRoleBadge) targetRoleBadge.textContent = 'Restoring...';
+        if (statusDuckFactor) statusDuckFactor.textContent = 'Duck Target: 40% (Idle)';
 
         restoreTimeout = setTimeout(() => {
-          if (stageDot) stageDot.classList.remove('active');
-          if (stageStatusTitle) stageStatusTitle.textContent = 'INTERACTIVE SIMULATION • WAITING FOR VIDEO';
-          if (bridgeBadge) bridgeBadge.classList.remove('active');
-          if (bridgeText) bridgeText.textContent = 'SWAY DUCK ENGINE';
-          if (duckCallout) duckCallout.classList.remove('active');
-          if (duckCalloutText) duckCalloutText.textContent = 'Full Volume (100%) • Ready';
-        }, 1500);
+          if (liveIndicatorText) liveIndicatorText.textContent = 'WASAPI Active • Ready';
+          if (targetRoleBadge) targetRoleBadge.textContent = 'Ducked Target';
+        }, 1200);
       }
     });
   }
 
-  // Start animation loop
-  loopFrameId = requestAnimationFrame(simulationTick);
+  // Start smooth 60fps loop
+  animationFrameId = requestAnimationFrame(animationLoop);
 });
