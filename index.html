@@ -194,25 +194,25 @@
   <!-- How It Works Section -->
   <section class="section" id="how-it-works">
     <div class="container">
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2 class="section-title">How SWAY operates</h2>
         <p class="section-desc">Zero audio redirection, zero virtual audio drivers, and no microphone permissions.</p>
       </div>
 
-      <div class="steps-grid">
-        <div class="step-card">
+      <div class="steps-grid reveal-group">
+        <div class="step-card reveal-item">
           <span class="step-num">01</span>
           <h3>Audio Meter Polling</h3>
           <p>SWAY uses the Windows Audio Session API (WASAPI) to query endpoint volume meters at low-overhead 50ms intervals.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-item">
           <span class="step-num">02</span>
           <h3>Rule Evaluation</h3>
           <p>When an active audio session matches your trigger list (like Chrome or Edge), SWAY calculates the duck target factor.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal-item">
           <span class="step-num">03</span>
           <h3>Smooth Fading & Restore</h3>
           <p>Target applications smoothly step down to your configured percentage and return to original volume once trigger audio stops.</p>
@@ -224,28 +224,28 @@
   <!-- Core Features Section -->
   <section class="section section-alt" id="features">
     <div class="container">
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2 class="section-title">Features and Architecture</h2>
         <p class="section-desc">Designed as a native desktop utility with minimal resource consumption.</p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
+      <div class="features-grid reveal-group">
+        <div class="feature-card reveal-item">
           <h3>Targeted Process Control</h3>
           <p>Select individual media players to duck (Spotify, Apple Music, VLC, Tidal, MusicBee) without affecting communications, wallpaper audio, or video games.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal-item">
           <h3>Custom Fade Curves</h3>
           <p>Configure fade-down duration, fade-up duration, restore delay, and duck percentage directly from the dashboard or settings file.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal-item">
           <h3>Quick Search Launcher</h3>
           <p>Access settings, toggle ducking states, inspect session logs, and exit the utility via a keyboard-driven launcher with <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal-item">
           <h3>Zero Background Servers</h3>
           <p>The audio engine compiles directly as a headless Windows GUI subsystem executable (<code>/target:winexe</code>) without browser extensions or command prompt windows.</p>
         </div>
@@ -257,7 +257,7 @@
   <section class="section" id="download">
     <div class="container">
       <div class="download-container">
-        <div class="download-card">
+        <div class="download-card reveal">
           <div class="download-header">
             <div>
               <h2 class="download-title">Download SWAY</h2>

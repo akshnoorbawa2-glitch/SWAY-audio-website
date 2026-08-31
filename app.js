@@ -206,4 +206,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start continuous mixer animation loop
   animationFrameId = requestAnimationFrame(updateMixerSimulation);
+
+  /* --------------------------------------------------------
+     3. Scroll Reveal Observer
+     -------------------------------------------------------- */
+  const revealElements = document.querySelectorAll('.reveal, .reveal-group');
+  
+  if ('IntersectionObserver' in window) {
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => scrollObserver.observe(el));
+  } else {
+    // Fallback: activate immediately
+    revealElements.forEach(el => el.classList.add('active'));
+  }
 });
+
