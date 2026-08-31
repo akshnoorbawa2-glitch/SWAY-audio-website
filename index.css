@@ -614,101 +614,90 @@ body {
 }
 
 /* ==========================================================
-   Feature Split Layout
+   Editorial Manifesto ("WHY SWAY") Section
    ========================================================== */
-.feature-split-layout {
-  display: grid;
-  grid-template-columns: 48% 52%;
-  gap: 48px;
-  align-items: center;
+.section-editorial {
+  padding: 130px 0 110px 0;
+  background-color: var(--bg-page);
 }
 
-.tactile-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 24px;
+.editorial-masthead {
+  max-width: 860px;
+  margin-bottom: 70px;
 }
 
-.step-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  background-color: #121318;
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-}
-
-.step-badge {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  background-color: #1c1d24;
-  border: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.editorial-label {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted);
-}
-
-.step-badge.active {
-  background-color: #142e24;
-  color: #6ee7b7;
-  border-color: rgba(16, 185, 129, 0.3);
-}
-
-.step-badge.duck {
-  background-color: #172433;
-  color: #7dd3fc;
-  border-color: rgba(56, 189, 248, 0.3);
-}
-
-.step-content {
-  flex-grow: 1;
-}
-
-.step-heading {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #ffffff;
+  letter-spacing: 1.2px;
+  color: var(--accent-indigo);
   display: block;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.step-content p {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 1px;
+.editorial-statement {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin-bottom: 24px;
 }
 
-.step-status-chip {
+.editorial-support {
+  font-size: 17.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 740px;
+}
+
+.editorial-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 48px;
+  gap: 0;
+}
+
+.principle-column {
+  padding: 0 40px;
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.principle-column:first-child {
+  padding-left: 0;
+}
+
+.principle-column:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.principle-num {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--text-muted);
-  background-color: #191a20;
-  padding: 3px 8px;
-  border-radius: 3px;
-  border: 1px solid var(--border-subtle);
 }
 
-.step-status-chip.trigger {
-  color: #6ee7b7;
-  background-color: #13271f;
+.principle-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
-.step-status-chip.duck {
-  color: #7dd3fc;
-  background-color: #142230;
-}
-
-.step-connector {
-  width: 2px;
-  height: 12px;
-  background-color: var(--border-medium);
-  margin-left: 26px;
+.principle-body {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 /* ==========================================================
@@ -1000,8 +989,24 @@ body {
     font-size: 42px;
   }
 
-  .feature-split-layout {
+  .editorial-statement {
+    font-size: 36px;
+  }
+
+  .editorial-principles-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .principle-column {
+    padding: 0 0 28px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .principle-column:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .feature-card-grid {
@@ -1019,7 +1024,15 @@ body {
 
 @media (max-width: 600px) {
   .hero-headline {
-    font-size: 34px;
+    font-size: 32px;
+  }
+
+  .editorial-statement {
+    font-size: 28px;
+  }
+
+  .editorial-support {
+    font-size: 16px;
   }
 
   .nav-center {
