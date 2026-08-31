@@ -187,8 +187,14 @@ body {
 }
 
 /* ==========================================================
-   Hero Section (48% / 52% Split)
+   Hero Section (48% / 52% Split) & Entrance Animations
    ========================================================== */
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
 .hero-section {
   padding-top: 130px;
   padding-bottom: 80px;

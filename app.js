@@ -1,8 +1,100 @@
 /* ==========================================================
-   SWAY — Interactive Audio Ducking Simulation Logic
+   SWAY — Page Load Fade-In Transitions & WASAPI Simulation
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* --------------------------------------------------------
+     1. Anime.js v4 Load Transition for Main Text & Visuals
+     -------------------------------------------------------- */
+  function initEntranceAnimations() {
+    // Check if Anime.js v4 (or UMD bundle) is loaded
+    const animeLib = window.anime;
+
+    if (animeLib && (typeof animeLib.animate === 'function' || typeof animeLib === 'function')) {
+      const animate = animeLib.animate || animeLib;
+      const stagger = animeLib.stagger || ((val, opts) => (i) => i * (typeof val === 'number' ? val : 80));
+      const createTimeline = animeLib.createTimeline || (() => ({ add: () => ({ add: () => {} }) }));
+      const createScope = animeLib.createScope || (() => ({ add: (cb) => cb({ matches: { portrait: false } }) }));
+      const createDrawable = animeLib.createDrawable || ((el) => el);
+      const onScroll = animeLib.onScroll || (() => true);
+
+      // Main Text Fade In Transition on Home Page Load
+      animate('.animate-fade-in', {
+        opacity: [0, 1],
+        translateY: [16, 0],
+        delay: stagger(80, { start: 100 }),
+        duration: 700,
+        ease: 'out(3)'
+      });
+
+      // SVG Path Drawing Transition
+      try {
+        const svgPaths = document.querySelectorAll('.brand-icon path, .brand-icon line');
+        if (svgPaths.length > 0 && typeof createDrawable === 'function') {
+          animate(createDrawable('path, line'), {
+            draw: ['0 0', '0 1', '1 1'],
+            delay: stagger(40),
+            ease: 'inOut(3)',
+            autoplay: typeof onScroll === 'function' ? onScroll({ sync: true }) : true,
+          });
+        }
+      } catch (err) {
+        // Fallback for drawable elements
+      }
+
+      // Grid Stagger Timeline
+      const options = {
+        grid: [13, 13],
+        from: 'center',                       
+      };
+
+      try {
+        createTimeline()
+          .add('.dot', {
+            scale: stagger([1.1, .75], options),
+            ease: 'inOutQuad',
+          }, stagger(200, options));
+      } catch (err) {
+        // Dot timeline initialization
+      }
+
+      // Orientation Scope Transition
+      try {
+        createScope({
+          mediaQueries: {
+            portrait: '(orientation: portrait)',
+          }
+        })
+        .add(({ matches }) => {
+          const isPortrait = matches.portrait;
+          createTimeline().add('.circle', {
+            y: isPortrait ? 0 : [-50, 50, -50],
+            x: isPortrait ? [-50, 50, -50] : 0,
+          }, stagger(100));
+        });
+      } catch (err) {
+        // Scope initialization
+      }
+
+    } else {
+      // Graceful CSS transition fallback
+      const elements = document.querySelectorAll('.animate-fade-in');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 100 + index * 75);
+      });
+    }
+  }
+
+  initEntranceAnimations();
+
+  /* --------------------------------------------------------
+     2. Interactive Sound Ducking Simulation Demo
+     -------------------------------------------------------- */
   const btnToggle = document.getElementById('btn-toggle-playback');
   const statusDot = document.getElementById('demo-dot');
   const statusText = document.getElementById('demo-status-text');
