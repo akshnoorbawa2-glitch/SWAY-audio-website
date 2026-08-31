@@ -546,6 +546,43 @@ kbd {
   border-bottom: 1px solid var(--border-subtle);
 }
 
+.section-intro {
+  padding: 56px 0;
+  background-color: #0b0b0e;
+}
+
+.intro-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 28px 32px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gradient-green-blue);
+}
+
+.intro-text {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #c8c8d0;
+}
+
+.intro-text strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .section-alt {
   background-color: #0d0d10;
 }
