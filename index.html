@@ -31,9 +31,8 @@
       </a>
 
       <nav class="header-nav">
-        <a href="#how-it-works">How It Works</a>
-        <a href="#interaction">Live Demo</a>
-        <a href="#details">Details</a>
+        <a href="#about">About</a>
+        <a href="#details">Specifications</a>
         <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="nav-github">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -75,197 +74,16 @@
         </div>
       </div>
 
-      <!-- Centerpiece Interactive Dual-Window Art Direction -->
-      <div class="interactive-stage" id="interaction">
-        <div class="stage-header-bar">
-          <div class="stage-label">
-            <span class="live-dot" id="stage-dot"></span>
-            <span id="stage-status-title">INTERACTIVE SIMULATION &bull; WAITING FOR VIDEO</span>
-          </div>
-          <span class="stage-tag">Click "Play Video" below to see Sway react</span>
-        </div>
-
-        <div class="dual-app-viewport">
-          
-          <!-- App 1: The Music Player (Spotify / Local Player) -->
-          <div class="app-window music-window" id="music-app">
-            <div class="window-chrome">
-              <div class="traffic-lights">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="window-title">Spotify — Background Audio</span>
-              <span class="window-tag-badge role-duck-target">Ducking Target</span>
-            </div>
-
-            <div class="window-content">
-              <div class="track-card">
-                <div class="album-art">
-                  <div class="vinyl-record" id="vinyl-disc"></div>
-                  <div class="art-cover">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                  </div>
-                </div>
-
-                <div class="track-details">
-                  <span class="track-name">Awake &bull; Tycho</span>
-                  <span class="track-album">Epoch &bull; Playing in background</span>
-                  <div class="music-wave-bars" id="music-wave-bars">
-                    <span style="height: 60%"></span>
-                    <span style="height: 90%"></span>
-                    <span style="height: 40%"></span>
-                    <span style="height: 100%"></span>
-                    <span style="height: 75%"></span>
-                    <span style="height: 50%"></span>
-                    <span style="height: 85%"></span>
-                    <span style="height: 65%"></span>
-                    <span style="height: 95%"></span>
-                    <span style="height: 45%"></span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Real-time Volume Level Meter & Indicator -->
-              <div class="volume-physical-meter">
-                <div class="meter-meta">
-                  <span class="meter-title">Volume Level</span>
-                  <span class="meter-percentage" id="music-vol-label">100%</span>
-                </div>
-                <div class="physical-fader-track">
-                  <div class="fader-fill" id="music-fader-fill" style="width: 100%;"></div>
-                  <div class="fader-thumb" id="music-fader-thumb" style="left: 100%;"></div>
-                </div>
-                <div class="duck-status-callout" id="duck-callout">
-                  <span class="callout-icon">&bull;</span>
-                  <span id="duck-callout-text">Full Volume &bull; Ready</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- The Sway Bridge Reaction Ribbon -->
-          <div class="sway-bridge-indicator">
-            <div class="bridge-line"></div>
-            <div class="bridge-badge" id="bridge-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
-              <span id="bridge-text">SWAY DUCK ENGINE</span>
-            </div>
-            <div class="bridge-line"></div>
-          </div>
-
-          <!-- App 2: The Video Player (Browser / YouTube / Media) -->
-          <div class="app-window video-window" id="video-app">
-            <div class="window-chrome">
-              <div class="traffic-lights">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="window-title">Browser — YouTube Video</span>
-              <span class="window-tag-badge role-trigger-source">Audio Trigger</span>
-            </div>
-
-            <div class="window-content">
-              
-              <div class="video-mock-screen">
-                <div class="video-preview-inner" id="video-preview">
-                  <div class="video-play-overlay">
-                    <button class="btn-play-trigger" id="btn-play-trigger">
-                      <svg class="play-icon" id="play-svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3"/>
-                      </svg>
-                      <span id="play-btn-label">Play Video</span>
-                    </button>
-                  </div>
-                  <div class="video-now-playing-info">
-                    <span class="video-tag">YouTube &bull; 1080p</span>
-                    <span class="video-title">Building Software That Feels Invisible</span>
-                  </div>
-                </div>
-                
-                <div class="video-scrubber">
-                  <div class="scrubber-progress" id="video-progress"></div>
-                </div>
-              </div>
-
-              <div class="video-audio-meter-row">
-                <div class="meter-meta">
-                  <span class="meter-title">Browser Audio Output</span>
-                  <span class="meter-state-label" id="video-audio-label">Silent</span>
-                </div>
-                <div class="video-level-bars" id="video-level-bars">
-                  <span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="stage-footer-note">
-          <span>Zero audio drivers installed &bull; Direct Windows WASAPI volume fading &bull; Configurable 1000ms fade duration</span>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- The 4-Beat Interaction Storyboard -->
-  <section class="story-section" id="how-it-works">
+  <!-- Clean Narrative / Why Sway Section -->
+  <section class="section-intro" id="about">
     <div class="stage-container">
-      <div class="section-title-lockup">
-        <span class="section-kicker">HOW IT FEELS</span>
-        <h2 class="section-serif-heading">The 4-beat rhythm of Sway.</h2>
-        <p class="section-subtext">No alt-tabbing, no reaching for volume sliders, and no manual pausing.</p>
-      </div>
-
-      <div class="rhythm-grid">
-        
-        <div class="rhythm-card">
-          <div class="rhythm-num">01</div>
-          <h3 class="rhythm-title">In the groove</h3>
-          <p class="rhythm-desc">Your music is playing at 100% in Spotify, Apple Music, or your favorite desktop player while you work.</p>
-          <div class="rhythm-visual vol-100">
-            <span class="rhythm-bar"></span>
-            <span class="rhythm-pill">100% Volume</span>
-          </div>
-        </div>
-
-        <div class="rhythm-card">
-          <div class="rhythm-num">02</div>
-          <h3 class="rhythm-title">Video begins</h3>
-          <p class="rhythm-desc">You click play on a YouTube video, Twitter clip, or meeting. Sway's background engine catches the sound instantly.</p>
-          <div class="rhythm-visual trigger-active">
-            <span class="rhythm-bar"></span>
-            <span class="rhythm-pill">Trigger Detected</span>
-          </div>
-        </div>
-
-        <div class="rhythm-card rhythm-highlight">
-          <div class="rhythm-num">03</div>
-          <h3 class="rhythm-title">The subtle dip</h3>
-          <p class="rhythm-desc">Music volume smoothly fades down to 40%. You hear every spoken word in the video clearly without losing your music.</p>
-          <div class="rhythm-visual vol-40">
-            <span class="rhythm-bar"></span>
-            <span class="rhythm-pill">Ducked to 40%</span>
-          </div>
-        </div>
-
-        <div class="rhythm-card">
-          <div class="rhythm-num">04</div>
-          <h3 class="rhythm-title">Seamless return</h3>
-          <p class="rhythm-desc">When the video ends or you pause it, Sway gracefully fades music back to 100% after a gentle 1.5s pause.</p>
-          <div class="rhythm-visual vol-restore">
-            <span class="rhythm-bar"></span>
-            <span class="rhythm-pill">Restores to 100%</span>
-          </div>
-        </div>
-
+      <div class="intro-card">
+        <p class="intro-text">
+          <strong>Sway</strong> is a simple desktop app made for people who like listening to music while watching videos. Instead of constantly reaching for the volume controls, Sway handles it automatically. When you start playing a video, Sway lowers the volume of your music app to around 40–50%, so you can actually hear the video without completely losing your music. As soon as you pause the video, your music goes back to 100% volume. When the video starts again, the music lowers again. That’s basically it — no complicated setup, no constantly switching between apps, and no manually adjusting volume every time. Sway is meant to stay quietly in the background and just make multitasking with audio feel smoother. You can also customize how much the music volume drops, so it works the way you prefer.
+        </p>
       </div>
     </div>
   </section>
@@ -317,9 +135,9 @@
             <p class="card-caption">Set your preferred background music volume when videos play:</p>
             
             <div class="preset-pill-selector">
-              <button class="preset-btn" data-val="20">20% (Deep)</button>
-              <button class="preset-btn active" data-val="40">40% (Recommended)</button>
-              <button class="preset-btn" data-val="60">60% (Subtle)</button>
+              <span class="preset-pill">20% (Deep)</span>
+              <span class="preset-pill active">40% (Recommended)</span>
+              <span class="preset-pill">60% (Subtle)</span>
             </div>
             
             <div class="card-detail-footnote">
