@@ -1,66 +1,10 @@
 /* ==========================================================
-   SWAY — Interactive Audio Stream & Mixer Simulation Logic
+   SWAY — Interactive Audio Ducking Simulation Logic
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* --------------------------------------------------------
-     1. Mouse Parallax & Stream Dynamics for Hero Visual
-     -------------------------------------------------------- */
-  const streamViewport = document.getElementById('card-stream-viewport');
-  const streamLanes = document.getElementById('streamLanes');
-  const tracks = document.querySelectorAll('.stream-track');
-
-  if (streamViewport && streamLanes) {
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      const rect = streamViewport.getBoundingClientRect();
-      // Calculate normalized mouse coords relative to viewport
-      const x = (e.clientX - (rect.left + rect.width / 2)) / (window.innerWidth / 2);
-      const y = (e.clientY - (rect.top + rect.height / 2)) / (window.innerHeight / 2);
-      
-      targetX = x * 14; // degrees
-      targetY = -y * 14;
-    });
-
-    function renderParallax() {
-      mouseX += (targetX - mouseX) * 0.08;
-      mouseY += (targetY - mouseY) * 0.08;
-
-      streamLanes.style.transform = `perspective(1000px) rotateY(${mouseX}deg) rotateX(${mouseY}deg)`;
-      requestAnimationFrame(renderParallax);
-    }
-    requestAnimationFrame(renderParallax);
-
-    // Scroll speed reaction: slightly accelerate streaming on active scroll
-    let lastScrollY = window.scrollY;
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      const delta = Math.abs(window.scrollY - lastScrollY);
-      lastScrollY = window.scrollY;
-
-      tracks.forEach(track => {
-        track.style.animationDuration = delta > 15 ? '12s' : '';
-      });
-
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        tracks.forEach(track => {
-          track.style.animationDuration = '';
-        });
-      }, 300);
-    }, { passive: true });
-  }
-
-  /* --------------------------------------------------------
-     2. Interactive Sound Ducking Simulation Demo
-     -------------------------------------------------------- */
   const btnToggle = document.getElementById('btn-toggle-playback');
-  const statusDot = document.querySelector('.demo-status-indicator .status-dot');
+  const statusDot = document.getElementById('demo-dot');
   const statusText = document.getElementById('demo-status-text');
   
   const spotifySlider = document.getElementById('spotify-volume-slider');
@@ -87,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!fadeStartTime) fadeStartTime = timestamp;
     const elapsed = timestamp - fadeStartTime;
 
-    // Simulate Trigger (Browser) audio output bouncing
+    // Simulate Trigger (Browser) audio meter activity
     if (isPlaying && meterTrigger) {
-      const triggerLevel = 55 + Math.sin(timestamp * 0.009) * 30 + Math.random() * 12;
-      meterTrigger.style.width = `${Math.max(15, Math.min(100, triggerLevel))}%`;
+      const triggerLevel = 50 + Math.sin(timestamp * 0.008) * 30 + Math.random() * 12;
+      meterTrigger.style.width = `${Math.max(12, Math.min(100, triggerLevel))}%`;
     } else if (meterTrigger) {
       meterTrigger.style.width = '0%';
     }
@@ -102,30 +46,30 @@ document.addEventListener('DOMContentLoaded', () => {
       currentDuckedVolume = startVolume - (startVolume - target) * progress;
       
       spotifySlider.value = Math.round(currentDuckedVolume);
-      spotifyValLabel.textContent = `${Math.round(currentDuckedVolume)}%`;
+      spotifyValLabel.textContent = `Volume: ${Math.round(currentDuckedVolume)}% (Ducked)`;
       
-      const targetLevel = (currentDuckedVolume * 0.75) + Math.sin(timestamp * 0.005) * 6;
-      meterTarget.style.width = `${Math.max(5, targetLevel)}%`;
+      const targetLevel = (currentDuckedVolume * 0.7) + Math.sin(timestamp * 0.004) * 6;
+      meterTarget.style.width = `${Math.max(4, targetLevel)}%`;
     } else if (isRestoring && spotifySlider && spotifyValLabel && meterTarget) {
       const progress = Math.min(1, elapsed / fadeUpMs);
       const target = 80;
       currentDuckedVolume = startVolume + (target - startVolume) * progress;
       
       spotifySlider.value = Math.round(currentDuckedVolume);
-      spotifyValLabel.textContent = `${Math.round(currentDuckedVolume)}%`;
+      spotifyValLabel.textContent = `Volume: ${Math.round(currentDuckedVolume)}%`;
       
-      const targetLevel = (currentDuckedVolume * 0.75) + Math.sin(timestamp * 0.005) * 10;
-      meterTarget.style.width = `${Math.max(5, targetLevel)}%`;
+      const targetLevel = (currentDuckedVolume * 0.7) + Math.sin(timestamp * 0.004) * 10;
+      meterTarget.style.width = `${Math.max(4, targetLevel)}%`;
 
       if (progress >= 1) {
         isRestoring = false;
-        if (statusDot) statusDot.className = 'status-dot active';
-        if (statusText) statusText.textContent = 'SWAY Idle';
+        if (statusDot) statusDot.className = 'status-indicator-dot';
+        if (statusText) statusText.textContent = 'Engine Ready • Idle';
       }
     } else if (spotifySlider && spotifyValLabel && meterTarget) {
       spotifySlider.value = 80;
-      spotifyValLabel.textContent = '80%';
-      const targetLevel = 62 + Math.sin(timestamp * 0.003) * 10;
+      spotifyValLabel.textContent = 'Volume: 80%';
+      const targetLevel = 58 + Math.sin(timestamp * 0.003) * 8;
       meterTarget.style.width = `${targetLevel}%`;
     }
 
@@ -146,20 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeStartTime = performance.now();
         startVolume = currentDuckedVolume;
 
-        btnToggle.textContent = 'Pause Video';
-        btnToggle.classList.remove('btn-hero-purple');
-        btnToggle.classList.add('btn-nav-cta');
+        btnToggle.textContent = 'Stop Playback Simulation';
+        btnToggle.classList.add('btn-secondary');
         
-        if (statusDot) statusDot.className = 'status-dot ducking';
-        if (statusText) statusText.textContent = 'Ducking Active (20%)';
+        if (statusDot) statusDot.className = 'status-indicator-dot ducking';
+        if (statusText) statusText.textContent = 'Active • Ducking Target (20%)';
       } else {
         // Stop playback -> Restore delay -> Fade up
         isPlaying = false;
-        btnToggle.textContent = 'Play Video';
-        btnToggle.classList.remove('btn-nav-cta');
-        btnToggle.classList.add('btn-hero-purple');
+        btnToggle.textContent = 'Simulate Video Playback';
+        btnToggle.classList.remove('btn-secondary');
         
-        if (statusText) statusText.textContent = 'Restoring...';
+        if (statusText) statusText.textContent = 'Audio Stopped • Restoring...';
 
         restoreTimeout = setTimeout(() => {
           isRestoring = true;
@@ -170,23 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Kick off continuous animation loop
+  // Start continuous mixer animation loop
   animationFrameId = requestAnimationFrame(updateMixerSimulation);
-
-  /* --------------------------------------------------------
-     3. Scroll Reveal Animations (IntersectionObserver)
-     -------------------------------------------------------- */
-  const revealElements = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.12
-  });
-
-  revealElements.forEach((el) => observer.observe(el));
 });

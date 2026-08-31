@@ -3,414 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SWAY — Intelligent Audio Control for Windows</title>
-  <meta name="description" content="SWAY adapts to the way you listen — giving you control of every sound effortlessly. Seamless automatic background audio ducking and management for Windows.">
+  <title>SWAY - Automatic Audio Ducking for Windows</title>
+  <meta name="description" content="A lightweight Windows desktop utility that automatically lowers background music when browser media, voice calls, or games play audio.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-  <!-- Background Ambient Glows -->
-  <div class="ambient-glow glow-top-right"></div>
-  <div class="ambient-glow glow-center-purple"></div>
-
-  <!-- Header Navigation -->
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-container">
       <a href="#" class="nav-brand">
-        <div class="brand-waveform">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
+        <svg class="brand-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
         <span class="brand-title">SWAY</span>
       </a>
 
       <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#features">Features</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#preview">Interactive Demo</a>
         <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">GitHub</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="#download" class="btn btn-nav-cta">Get SWAY</a>
+        <a href="#download" class="btn btn-sm btn-primary">Download</a>
       </div>
     </div>
   </header>
 
-  <!-- Main Hero Cinematic Section -->
-  <section class="hero-cinematic" id="hero">
-    <div class="hero-container">
+  <!-- Hero Section -->
+  <section class="hero-section" id="overview">
+    <div class="container hero-grid">
       
-      <!-- Left Column: Copy & Value Proposition (45%) -->
-      <div class="hero-left">
-        
-        <div class="hero-eyebrow">
-          <span class="eyebrow-pill-dot"></span>
-          <span>BUILT AROUND YOU</span>
-        </div>
+      <!-- Left Column: Product Information (48%) -->
+      <div class="hero-content">
+        <div class="eyebrow-tag">WINDOWS AUDIO UTILITY</div>
 
-        <h1 class="hero-headline">
-          All about your<br>
-          <span class="purple-gradient-text">comfort and time.</span>
+        <h1 class="hero-title">
+          Automatic background audio ducking for Windows.
         </h1>
 
         <p class="hero-description">
-          SWAY puts you in control of every sound. Personalize, prioritize, and create your perfect audio environment — effortlessly.
+          SWAY detects when your browser, meeting, or media player starts playing audio and automatically lowers background music apps like Spotify. When playback ends, volume restores smoothly.
         </p>
 
         <div class="hero-cta-group">
-          <a href="#download" class="btn btn-hero-purple">
-            <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download SWAY
-          </a>
-          <div class="trust-badge">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
-            <span>Free for Windows 10 & 11</span>
+          <a href="#download" class="btn btn-primary">Download for Windows</a>
+          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="btn btn-secondary">Source Code</a>
+        </div>
+
+        <div class="hero-spec-list">
+          <div class="spec-item">
+            <span class="spec-label">Platform</span>
+            <span class="spec-value">Windows 10 / 11 (64-bit)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Engine</span>
+            <span class="spec-value">Native WASAPI (C#)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">License</span>
+            <span class="spec-value">Open Source (MIT)</span>
           </div>
         </div>
 
-        <!-- 3 Feature Pillars -->
-        <div class="hero-pillars">
-          <div class="pillar-item">
-            <div class="pillar-icon-box">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="21" x2="4" y2="14"/>
-                <line x1="4" y1="10" x2="4" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="12"/>
-                <line x1="12" y1="8" x2="12" y2="3"/>
-                <line x1="20" y1="21" x2="20" y2="16"/>
-                <line x1="20" y1="12" x2="20" y2="3"/>
-                <line x1="1" y1="14" x2="7" y2="14"/>
-                <line x1="9" y1="8" x2="15" y2="8"/>
-                <line x1="17" y1="16" x2="23" y2="16"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <h4>Tailored to you</h4>
-              <p>Every setting adapts to your preferences.</p>
-            </div>
+        <!-- Functional Core Points -->
+        <div class="hero-points">
+          <div class="point-item">
+            <h4>Linear Volume Fading</h4>
+            <p>Configurable millisecond fade down and fade up intervals eliminate sudden, jarring audio jumps.</p>
           </div>
-
-          <div class="pillar-item">
-            <div class="pillar-icon-box">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <h4>Save what matters</h4>
-              <p>Less distraction, more productive moments.</p>
-            </div>
+          <div class="point-item">
+            <h4>Targeted App Routing</h4>
+            <p>Ducks only your chosen music players. WhatsApp, Steam games, and system alerts stay at full volume.</p>
           </div>
-
-          <div class="pillar-item">
-            <div class="pillar-icon-box">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-            </div>
-            <div class="pillar-text">
-              <h4>Experience seamless audio</h4>
-              <p>Smart control that feels invisible.</p>
-            </div>
+          <div class="point-item">
+            <h4>Global Hotkey Launcher</h4>
+            <p>Press <kbd>Alt</kbd> + <kbd>Space</kbd> anywhere to search controls, toggle ducking, and view active sessions.</p>
           </div>
         </div>
-
-        <!-- Scroll Indicator -->
-        <a href="#features" class="scroll-explore-pill">
-          <div class="mouse-icon">
-            <div class="mouse-wheel"></div>
-          </div>
-          <span>Scroll to explore</span>
-        </a>
-
       </div>
 
-      <!-- Right Column: Cascading Floating UI Cards Field (55%) -->
-      <div class="hero-right" id="card-stream-viewport">
-        
-        <!-- Depth Backdrop Lights -->
-        <div class="stream-backdrop-blur"></div>
-        <div class="stream-light-pillar"></div>
+      <!-- Right Column: Interactive Real-Time Mixer Simulation (52%) -->
+      <div class="hero-demo">
+        <div class="panel-card demo-panel">
+          
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <span class="status-indicator-dot" id="demo-dot"></span>
+              <span class="panel-title" id="demo-status-text">Engine Ready &bull; Idle</span>
+            </div>
+            <span class="panel-tag">WASAPI Monitor</span>
+          </div>
 
-        <!-- Multi-depth Streaming Columns -->
-        <div class="stream-lanes-wrapper" id="streamLanes">
-
-          <!-- Lane 1 (Background Depth Layer) -->
-          <div class="stream-lane lane-back">
-            <div class="stream-track track-1">
+          <div class="panel-body">
+            
+            <!-- Trigger Session: Browser -->
+            <div class="session-box">
+              <div class="session-header">
+                <div class="session-info">
+                  <span class="session-name">Google Chrome</span>
+                  <span class="session-role role-trigger">Trigger Source</span>
+                </div>
+                <span class="session-meta">Audio Endpoint &bull; PID 14280</span>
+              </div>
               
-              <!-- Card: Discord Mini -->
-              <div class="glass-card card-compact card-discord-mini">
-                <div class="card-icon-circle discord-bg">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                </div>
-                <div class="card-meta">
-                  <span class="card-label">Voice Channel</span>
-                  <span class="card-sub">Connected</span>
-                </div>
+              <div class="session-action-row">
+                <button id="btn-toggle-playback" class="btn btn-sm btn-action">Simulate Video Playback</button>
               </div>
 
-              <!-- Card: Icon Box Equalizer -->
-              <div class="glass-card card-square-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"/>
-                  <line x1="12" y1="20" x2="12" y2="4"/>
-                  <line x1="6" y1="20" x2="6" y2="14"/>
-                </svg>
-              </div>
-
-              <!-- Card: Game Volume -->
-              <div class="glass-card card-slider-compact">
-                <div class="card-row">
-                  <span class="card-label">Steam Games</span>
-                  <span class="card-value">75%</span>
+              <div class="meter-bar-wrapper">
+                <div class="meter-bar-track">
+                  <div id="meter-fill-trigger" class="meter-bar-fill meter-trigger"></div>
                 </div>
-                <div class="mini-bar-track">
-                  <div class="mini-bar-fill" style="width: 75%;"></div>
+                <div class="meter-scale">
+                  <span>-60 dB</span>
+                  <span>-24 dB</span>
+                  <span>-6 dB</span>
+                  <span>0 dB</span>
                 </div>
               </div>
-
-              <!-- Card: Mute Icon Square -->
-              <div class="glass-card card-square-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                  <line x1="23" y1="9" x2="17" y2="15"/>
-                  <line x1="17" y1="9" x2="23" y2="15"/>
-                </svg>
-              </div>
-
-              <!-- Card: Microphone Pill -->
-              <div class="glass-card card-pill">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                  <line x1="12" y1="19" x2="12" y2="23"/>
-                </svg>
-                <span>Mic: Studio</span>
-              </div>
-
             </div>
+
+            <!-- Target Session: Spotify -->
+            <div class="session-box">
+              <div class="session-header">
+                <div class="session-info">
+                  <span class="session-name">Spotify</span>
+                  <span class="session-role role-target">Ducked Target</span>
+                </div>
+                <span class="session-meta" id="spotify-volume-value">Volume: 80%</span>
+              </div>
+
+              <div class="slider-wrapper">
+                <input type="range" id="spotify-volume-slider" class="range-slider" min="0" max="100" value="80" disabled>
+              </div>
+
+              <div class="meter-bar-wrapper">
+                <div class="meter-bar-track">
+                  <div id="meter-fill-target" class="meter-bar-fill meter-target"></div>
+                </div>
+                <div class="meter-scale">
+                  <span>-60 dB</span>
+                  <span>-24 dB</span>
+                  <span>-6 dB</span>
+                  <span>0 dB</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unaffected Session: System / Discord -->
+            <div class="session-box session-unaffected">
+              <div class="session-header">
+                <div class="session-info">
+                  <span class="session-name">Discord / Voice Chat</span>
+                  <span class="session-role role-excluded">Excluded</span>
+                </div>
+                <span class="session-meta">Volume: 100% (Constant)</span>
+              </div>
+              <div class="meter-bar-wrapper">
+                <div class="meter-bar-track">
+                  <div class="meter-bar-fill" style="width: 15%;"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Lane 2 (Foreground / Midground Hero Layer) -->
-          <div class="stream-lane lane-fore">
-            <div class="stream-track track-2">
-
-              <!-- Card 1: Headphones Device Connected -->
-              <div class="glass-card card-wide card-headphones">
-                <div class="card-icon-circle">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-                  </svg>
-                </div>
-                <div class="card-meta">
-                  <span class="card-label">Headphones</span>
-                  <span class="card-sub">Device</span>
-                </div>
-                <span class="status-indicator-dot dot-green"></span>
-              </div>
-
-              <!-- Card 2: Master Volume Pill -->
-              <div class="glass-card card-slider-pill">
-                <div class="slider-pill-left">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                  </svg>
-                  <div class="slider-pill-bar">
-                    <div class="slider-pill-fill" style="width: 68%;"></div>
-                  </div>
-                </div>
-                <span class="slider-pill-val">68%</span>
-              </div>
-
-              <!-- Card 3: Spotify Dynamic Ducked Card -->
-              <div class="glass-card card-app-slider card-spotify">
-                <div class="app-card-header">
-                  <div class="app-brand">
-                    <div class="app-icon-box spotify-green">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.9-9.3-1-.3.1-.7-.1-.8-.4-.1-.3.1-.7.4-.8 4.1-1 7.6-.5 10.4 1.1.3.2.3.6.2.9zm1.5-3.3c-.3.4-.8.5-1.2.3-3-1.8-7.5-2.4-11-1.3-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 4.1-1.2 9.1-.6 12.5 1.5.4.1.5.6.2 1zm.1-3.4C15.5 8.4 9.5 8.2 6.1 9.2c-.5.2-1.1-.1-1.2-.6-.2-.5.1-1.1.6-1.2 4-1.2 10.6-1 14.7 1.4.5.3.6.9.3 1.4-.2.5-.8.6-1.4.4z"/></svg>
-                    </div>
-                    <div class="app-info">
-                      <span class="app-name">Spotify</span>
-                      <span class="app-status">Now playing</span>
-                    </div>
-                  </div>
-                  <div class="app-level-badge">42%</div>
-                </div>
-                <div class="app-slider-track">
-                  <div class="app-slider-fill" style="width: 42%;"></div>
-                </div>
-              </div>
-
-              <!-- Card 4: Discord Slider Card -->
-              <div class="glass-card card-app-slider card-discord">
-                <div class="app-card-header">
-                  <div class="app-brand">
-                    <div class="app-icon-box discord-blue">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                    </div>
-                    <div class="app-info">
-                      <span class="app-name">Discord</span>
-                      <span class="app-status">Communications</span>
-                    </div>
-                  </div>
-                  <div class="app-level-badge">28%</div>
-                </div>
-                <div class="app-slider-track">
-                  <div class="app-slider-fill" style="width: 28%;"></div>
-                </div>
-              </div>
-
-              <!-- Card 5: Focus Mode Pill -->
-              <div class="glass-card card-focus">
-                <div class="focus-radar">
-                  <span class="radar-circle"></span>
-                  <span class="radar-center"></span>
-                </div>
-                <div class="focus-meta">
-                  <span class="focus-title">Focus Mode</span>
-                  <span class="focus-state">On</span>
-                </div>
-              </div>
-
-              <!-- Card 6: YouTube Background Stream Card -->
-              <div class="glass-card card-app-slider card-youtube">
-                <div class="app-card-header">
-                  <div class="app-brand">
-                    <div class="app-icon-box youtube-red">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </div>
-                    <div class="app-info">
-                      <span class="app-name">YouTube</span>
-                      <span class="app-status">Background</span>
-                    </div>
-                  </div>
-                  <div class="app-level-badge">35%</div>
-                </div>
-                <div class="app-slider-track">
-                  <div class="app-slider-fill" style="width: 35%;"></div>
-                </div>
-              </div>
-
-              <!-- Card 7: System Sounds -->
-              <div class="glass-card card-app-slider card-system">
-                <div class="app-card-header">
-                  <div class="app-brand">
-                    <div class="app-icon-box system-purple">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 12h2l3-7 4 14 3-7 2 4h6"/>
-                      </svg>
-                    </div>
-                    <div class="app-info">
-                      <span class="app-name">System Sounds</span>
-                      <span class="app-status">Default</span>
-                    </div>
-                  </div>
-                  <div class="app-level-badge">60%</div>
-                </div>
-                <div class="app-slider-track">
-                  <div class="app-slider-fill" style="width: 60%;"></div>
-                </div>
-              </div>
-
-              <!-- Card 8: EQ Custom Waveform -->
-              <div class="glass-card card-eq">
-                <div class="eq-header">
-                  <div class="eq-icon-bar">
-                    <span></span><span></span><span></span><span></span>
-                  </div>
-                  <div class="eq-meta">
-                    <span class="eq-title">EQ</span>
-                    <span class="eq-sub">Custom</span>
-                  </div>
-                </div>
-                <div class="eq-wave-svg-box">
-                  <svg width="100%" height="24" viewBox="0 0 100 24" fill="none">
-                    <path d="M0 16 Q15 6 30 18 T60 8 T85 14 T100 12" stroke="url(#eq-grad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                    <defs>
-                      <linearGradient id="eq-grad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#8b5cf6"/>
-                        <stop offset="1" stop-color="#ec4899"/>
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Lane 3 (Floating Icon Gems & Right Flank) -->
-          <div class="stream-lane lane-side">
-            <div class="stream-track track-3">
-
-              <!-- Music Note Glass Square -->
-              <div class="glass-card card-square-icon glow-violet">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18V5l12-2v13"/>
-                  <circle cx="6" cy="18" r="3"/>
-                  <circle cx="18" cy="16" r="3"/>
-                </svg>
-              </div>
-
-              <!-- Chrome Card -->
-              <div class="glass-card card-compact">
-                <div class="card-icon-circle chrome-color">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <line x1="21.17" y1="8" x2="12" y2="8"/>
-                    <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
-                    <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
-                  </svg>
-                </div>
-                <div class="card-meta">
-                  <span class="card-label">Chrome</span>
-                  <span class="card-sub">Active Tab</span>
-                </div>
-              </div>
-
-              <!-- Equalizer Slider Pill -->
-              <div class="glass-card card-square-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="4" y1="21" x2="4" y2="14"/>
-                  <line x1="4" y1="10" x2="4" y2="3"/>
-                  <line x1="12" y1="21" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12" y2="3"/>
-                  <line x1="20" y1="21" x2="20" y2="16"/>
-                  <line x1="20" y1="12" x2="20" y2="3"/>
-                </svg>
-              </div>
-
-              <!-- Gamepad Icon Box -->
-              <div class="glass-card card-square-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="6" y1="12" x2="10" y2="12"/>
-                  <line x1="8" y1="10" x2="8" y2="14"/>
-                  <line x1="15" y1="13" x2="15.01" y2="13"/>
-                  <line x1="18" y1="11" x2="18.01" y2="11"/>
-                  <rect x="2" y="6" width="20" height="12" rx="6"/>
-                </svg>
-              </div>
-
-            </div>
+          <div class="panel-footer">
+            <span class="footer-note">Linear fade curve: 1000ms down &bull; 1500ms delay &bull; 1000ms up</span>
           </div>
 
         </div>
@@ -419,155 +189,116 @@
     </div>
   </section>
 
-  <!-- Live Interactive Simulation Demo Section -->
-  <section id="preview" class="demo-section reveal">
+  <!-- How It Works Section -->
+  <section class="section" id="how-it-works">
     <div class="container">
-      <div class="section-badge-center">INTERACTIVE SIMULATION</div>
-      <h2 class="section-title">See SWAY in action</h2>
-      <p class="section-sub">Experience how SWAY detects browser sound in real-time and gracefully ducks Spotify volume.</p>
-
-      <div class="demo-wrapper">
-        <div class="demo-header">
-          <div class="demo-status-indicator">
-            <span class="status-dot active"></span>
-            <span id="demo-status-text">SWAY Idle</span>
-          </div>
-          <span class="demo-title-bar">Live WASAPI Simulation</span>
-        </div>
-
-        <div class="demo-body">
-          <div class="sound-source-card trigger-card">
-            <div class="sound-card-header">
-              <span class="card-badge trigger-badge">Trigger Stream</span>
-              <h3>Web Browser</h3>
-            </div>
-            <p>Playing a YouTube video, Netflix, or media tab.</p>
-            <div class="browser-controls">
-              <button id="btn-toggle-playback" class="btn btn-hero-purple btn-block">Play Video</button>
-            </div>
-            <div class="meter-container">
-              <div class="meter-track">
-                <div id="meter-fill-trigger" class="meter-fill trigger-fill"></div>
-              </div>
-              <span class="meter-label">Audio Output Activity</span>
-            </div>
-          </div>
-
-          <div class="sound-source-card target-card">
-            <div class="sound-card-header">
-              <span class="card-badge target-badge">Target Music App</span>
-              <h3>Spotify</h3>
-            </div>
-            <p>Background music listening session.</p>
-            <div class="mixer-slider-wrapper">
-              <input type="range" id="spotify-volume-slider" class="volume-slider" min="0" max="100" value="80" disabled>
-              <span id="spotify-volume-value" class="volume-value-label">80%</span>
-            </div>
-            <div class="meter-container">
-              <div class="meter-track">
-                <div id="meter-fill-target" class="meter-fill target-fill"></div>
-              </div>
-              <span class="meter-label">Spotify Master Volume</span>
-            </div>
-          </div>
-        </div>
+      <div class="section-heading">
+        <h2 class="section-title">How SWAY operates</h2>
+        <p class="section-desc">Zero audio redirection, zero virtual audio drivers, and no microphone permissions.</p>
       </div>
 
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <h3>Audio Meter Polling</h3>
+          <p>SWAY uses the Windows Audio Session API (WASAPI) to query endpoint volume meters at low-overhead 50ms intervals.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <h3>Rule Evaluation</h3>
+          <p>When an active audio session matches your trigger list (like Chrome or Edge), SWAY calculates the duck target factor.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <h3>Smooth Fading & Restore</h3>
+          <p>Target applications smoothly step down to your configured percentage and return to original volume once trigger audio stops.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Features Grid -->
-  <section id="features" class="features-section reveal">
+  <!-- Core Features Section -->
+  <section class="section section-alt" id="features">
     <div class="container">
-      <div class="section-badge-center">NATIVE PERFORMANCE</div>
-      <h2 class="section-title">Built for power and discretion.</h2>
-      
+      <div class="section-heading">
+        <h2 class="section-title">Features and Architecture</h2>
+        <p class="section-desc">Designed as a native desktop utility with minimal resource consumption.</p>
+      </div>
+
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
-          <h3>Smooth Fading Transitions</h3>
-          <p>Interpolates volume changes linearly over customizable fade down and fade up durations (default: 1000ms) for a frictionless listening experience.</p>
+          <h3>Targeted Process Control</h3>
+          <p>Select individual media players to duck (Spotify, Apple Music, VLC, Tidal, MusicBee) without affecting communications, wallpaper audio, or video games.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polygon points="12 8 8 12 12 16 12 8"/>
-            </svg>
-          </div>
-          <h3>Targeted App Routing</h3>
-          <p>Specify exactly which background music and media applications to duck. WhatsApp, Steam, Discord voice calls, and games stay untouched.</p>
+          <h3>Custom Fade Curves</h3>
+          <p>Configure fade-down duration, fade-up duration, restore delay, and duck percentage directly from the dashboard or settings file.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M10 4v4"/>
-              <path d="M2 8h20"/>
-            </svg>
-          </div>
-          <h3>Alt+Space Search Launcher</h3>
-          <p>A centered keyboard-navigable interface to search commands, check active audio logs, adjust volumes, and quit the background engine instantly.</p>
+          <h3>Quick Search Launcher</h3>
+          <p>Access settings, toggle ducking states, inspect session logs, and exit the utility via a keyboard-driven launcher with <kbd>Alt</kbd> + <kbd>Space</kbd>.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrapper">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3>Direct WASAPI CoreAudio</h3>
-          <p>Utilizes native Windows Audio Session APIs directly in a silent C# subsystem. No browser extensions, microphone permissions, or background servers.</p>
+          <h3>Zero Background Servers</h3>
+          <p>The audio engine compiles directly as a headless Windows GUI subsystem executable (<code>/target:winexe</code>) without browser extensions or command prompt windows.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Download Section -->
-  <section id="download" class="download-section reveal">
+  <section class="section" id="download">
     <div class="container">
-      <h2 class="download-title">Elevate your Windows audio today.</h2>
-      <p class="download-sub">Zero bloatware. Native performance. Completely free and open source.</p>
-      
-      <div class="download-card">
-        <div class="download-card-glow"></div>
-        <div class="download-card-badge">STABLE RELEASE v1.0.0</div>
-        <h3>SWAY for Windows</h3>
-        <p>Compatible with Windows 10 & 11 (64-bit). Includes full dashboard, global hotkey launcher, and WASAPI audio ducking engine.</p>
-        
-        <div class="download-btn-row">
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="btn btn-hero-purple btn-lg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download Free Release (.exe)
-          </a>
+      <div class="download-container">
+        <div class="download-card">
+          <div class="download-header">
+            <div>
+              <h2 class="download-title">Download SWAY</h2>
+              <p class="download-subtitle">Standalone portable release for Windows 10 and 11 (64-bit).</p>
+            </div>
+            <span class="version-tag">Version 1.0.0</span>
+          </div>
+
+          <div class="download-details">
+            <div class="detail-row">
+              <span class="detail-name">Release package</span>
+              <span class="detail-val">SWAY-1.0.0-win-x64.exe</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-name">Dependencies</span>
+              <span class="detail-val">None (Bundled .NET 4.0 & Electron)</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-name">Source repository</span>
+              <span class="detail-val"><a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">github.com/akshnoorbawa2-glitch/Sway-Audio</a></span>
+            </div>
+          </div>
+
+          <div class="download-action-row">
+            <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              Download Installer (.exe)
+            </a>
+          </div>
         </div>
-        <span class="version-meta">SHA-256 Verified &bull; Lightweight &bull; Open Source</span>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-brand">
-        <div class="brand-waveform mini">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <span>SWAY</span>
+    <div class="container footer-layout">
+      <div class="footer-left">
+        <span class="footer-logo">SWAY</span>
+        <span class="footer-desc">Intelligent audio management utility for Windows.</span>
       </div>
-      <p>&copy; 2026 SWAY. Intelligent audio control for Windows. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-right">
+        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">GitHub Repository</a>
+        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
       </div>
     </div>
   </footer>
