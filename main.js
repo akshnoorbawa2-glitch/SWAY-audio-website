@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initStatsCountUp();
   initMobileMenu();
-  initNavLinks();
+  initTabNavigation();
 });
 
 /**
@@ -124,46 +124,87 @@ function initMobileMenu() {
     });
   });
 
-  // Close on resize > 720px
+  // Close on resize > 768px
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 720 && burgerBtn.getAttribute('aria-expanded') === 'true') {
+    if (window.innerWidth > 768 && burgerBtn.getAttribute('aria-expanded') === 'true') {
       closeMenu();
     }
   });
 }
 
 /**
- * 3) Navigation Link Active State Handler
+ * 3) View Panels Tab Switcher Controller
  */
-function initNavLinks() {
-  const desktopLinks = document.querySelectorAll('.nav-link');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+function initTabNavigation() {
+  const desktopLinks = document.querySelectorAll('.nav-link[data-tab]');
+  const mobileLinks = document.querySelectorAll('.mobile-link[data-tab]');
+  const logoBtn = document.querySelector('.logo-btn[data-tab]');
+  const allNavLinks = [...desktopLinks, ...mobileLinks];
+  const panels = {
+    home: document.getElementById('view-home'),
+    features: document.getElementById('view-features'),
+    architecture: document.getElementById('view-architecture')
+  };
 
-  function setActive(links, activeTarget) {
-    links.forEach((link) => {
-      if (link === activeTarget) {
+  function switchTab(tabId) {
+    if (!panels[tabId]) tabId = 'home';
+
+    // Update active view panel
+    Object.keys(panels).forEach((key) => {
+      const panel = panels[key];
+      if (!panel) return;
+      if (key === tabId) {
+        panel.classList.add('active');
+        panel.setAttribute('aria-hidden', 'false');
+      } else {
+        panel.classList.remove('active');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Update active class on nav links
+    allNavLinks.forEach((link) => {
+      const targetTab = link.getAttribute('data-tab');
+      if (targetTab === tabId) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
       }
     });
+
+    // Update URL hash without jumping scroll
+    if (window.location.hash !== `#${tabId}`) {
+      history.pushState(null, '', `#${tabId}`);
+    }
   }
 
-  desktopLinks.forEach((link) => {
+  allNavLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        setActive(desktopLinks, link);
+      const tabId = link.getAttribute('data-tab');
+      if (tabId && panels[tabId]) {
+        e.preventDefault();
+        switchTab(tabId);
       }
     });
   });
 
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        setActive(mobileLinks, link);
-      }
+  if (logoBtn) {
+    logoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab('home');
     });
-  });
+  }
+
+  // Handle direct hash navigation on page load (e.g. #features, #architecture)
+  function handleHash() {
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash && panels[currentHash]) {
+      switchTab(currentHash);
+    } else {
+      switchTab('home');
+    }
+  }
+
+  window.addEventListener('popstate', handleHash);
+  handleHash();
 }

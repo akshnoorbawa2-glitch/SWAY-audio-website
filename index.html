@@ -9,7 +9,7 @@
   <!-- Inter UI Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- BubbledotICG-FinePos Retro Dot-Matrix Display Font -->
   <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
@@ -36,15 +36,15 @@
     
     <!-- 1) Header Region -->
     <header class="header">
-      <a href="#" class="logo-btn" aria-label="Sway Home">
+      <a href="#home" class="logo-btn" aria-label="Sway Home" data-tab="home">
         <img src="assets/logo.svg" alt="" width="52" height="52" class="logo-img">
       </a>
 
       <!-- Desktop Nav Pill -->
       <nav class="nav-pill" aria-label="Primary Navigation">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#home" class="nav-link active" data-tab="home">Home</a>
+        <a href="#features" class="nav-link" data-tab="features">Features</a>
+        <a href="#architecture" class="nav-link" data-tab="architecture">Architecture</a>
         <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="nav-link">GitHub</a>
       </nav>
 
@@ -65,9 +65,9 @@
     <div class="mobile-overlay" id="mobileOverlay" hidden></div>
     <div class="mobile-menu" id="mobileMenu" hidden>
       <nav class="mobile-nav-links">
-        <a href="#home" class="mobile-link active">Home</a>
-        <a href="#features" class="mobile-link">Features</a>
-        <a href="#architecture" class="mobile-link">Architecture</a>
+        <a href="#home" class="mobile-link active" data-tab="home">Home</a>
+        <a href="#features" class="mobile-link" data-tab="features">Features</a>
+        <a href="#architecture" class="mobile-link" data-tab="architecture">Architecture</a>
         <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="mobile-link">GitHub</a>
       </nav>
       <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="mobile-action-pill">
@@ -75,50 +75,181 @@
       </a>
     </div>
 
-    <!-- 2) Hero Center Region -->
-    <main class="hero">
+    <!-- 2) Main Dynamic Viewport Container -->
+    <main class="viewport-main">
       
-      <!-- Trust Badge with Overlapping Inner Logo Disks -->
-      <div class="trust-row anim" style="--d: 0.05s">
-        <div class="trust-avatars">
-          <div class="trust-avatar avatar-1" title="Spotify">
-            <div class="avatar-inner">
-              <i class="fa-brands fa-spotify"></i>
+      <!-- TAB 1: HOME VIEW -->
+      <section class="view-panel active" id="view-home" aria-hidden="false">
+        <div class="hero">
+          
+          <!-- Trust Badge with Overlapping Inner Logo Disks -->
+          <div class="trust-row anim" style="--d: 0.05s">
+            <div class="trust-avatars">
+              <div class="trust-avatar avatar-1" title="Spotify">
+                <div class="avatar-inner">
+                  <i class="fa-brands fa-spotify"></i>
+                </div>
+              </div>
+              <div class="trust-avatar avatar-2" title="Discord">
+                <div class="avatar-inner">
+                  <i class="fa-brands fa-discord"></i>
+                </div>
+              </div>
+              <div class="trust-avatar avatar-3" title="YouTube">
+                <div class="avatar-inner">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+              </div>
+            </div>
+            <div class="trust-pill">
+              <span>Trusted by 10,000+ Listeners</span>
             </div>
           </div>
-          <div class="trust-avatar avatar-2" title="Discord">
-            <div class="avatar-inner">
-              <i class="fa-brands fa-discord"></i>
-            </div>
+
+          <!-- Retro Dot-Matrix Display Headline -->
+          <h1 class="headline anim">
+            <span class="headline-line line-1">AUDIO DUCKING</span>
+            <span class="headline-line line-2">DESIGNED TO EVOLVE</span>
+          </h1>
+
+          <!-- Precise Subheading -->
+          <p class="subhead anim" style="--d: 0.28s">
+            Automatically ducks background music in Spotify and Apple Music when videos or voice calls play audio, then seamlessly restores it in real time.
+          </p>
+
+          <!-- High-Glow CTA Button -->
+          <div class="cta-wrap anim" style="--d: 0.4s">
+            <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="cta-btn">
+              Download for Windows
+            </a>
           </div>
-          <div class="trust-avatar avatar-3" title="YouTube">
-            <div class="avatar-inner">
-              <i class="fa-brands fa-youtube"></i>
+
+        </div>
+      </section>
+
+      <!-- TAB 2: FEATURES VIEW -->
+      <section class="view-panel" id="view-features" aria-hidden="true">
+        <div class="content-panel features-panel">
+          <div class="panel-header">
+            <div class="panel-badge">CAPABILITIES</div>
+            <h2 class="panel-title">Surgical Audio Control</h2>
+            <p class="panel-desc">Designed as a high-performance Windows utility without audio virtualization drivers.</p>
+          </div>
+
+          <div class="features-grid">
+            
+            <div class="feature-card">
+              <div class="feature-top">
+                <span class="feature-index">01</span>
+                <span class="feature-tag">Process Isolation</span>
+              </div>
+              <h3 class="feature-heading">Targeted Media Routing</h3>
+              <p class="feature-text">
+                Isolate designated media players (<code class="code-pill">spotify.exe</code>, <code class="code-pill">AppleMusic.exe</code>, <code class="code-pill">vlc.exe</code>). Discord voice chats, games, and system alerts stay at 100% volume.
+              </p>
             </div>
+
+            <div class="feature-card">
+              <div class="feature-top">
+                <span class="feature-index">02</span>
+                <span class="feature-tag">Spotlight Interface</span>
+              </div>
+              <h3 class="feature-heading">Alt + Space Quick HUD</h3>
+              <p class="feature-text">
+                Press <kbd>Alt</kbd> + <kbd>Space</kbd> anywhere to search controls, toggle ducking rules, check active session meters, or exit the background engine instantly.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-top">
+                <span class="feature-index">03</span>
+                <span class="feature-tag">Linear Envelope</span>
+              </div>
+              <h3 class="feature-heading">Smooth Gain Interpolation</h3>
+              <p class="feature-text">
+                Transitions are calculated across configurable millisecond durations (1000ms attack, 1500ms restore delay, 1000ms release) to eliminate sudden clicks.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-top">
+                <span class="feature-index">04</span>
+                <span class="feature-tag">WASAPI Engine</span>
+              </div>
+              <h3 class="feature-heading">Native Core Audio COM</h3>
+              <p class="feature-text">
+                Communicates directly with Windows Audio Sessions. Zero virtual audio drivers, zero audio lag, no microphone permissions, and no external servers.
+              </p>
+            </div>
+
           </div>
         </div>
-        <div class="trust-pill">
-          <span>Trusted by 10,000+ Listeners</span>
+      </section>
+
+      <!-- TAB 3: ARCHITECTURE VIEW -->
+      <section class="view-panel" id="view-architecture" aria-hidden="true">
+        <div class="content-panel architecture-panel">
+          <div class="panel-header">
+            <div class="panel-badge">ENGINEERING BLUEPRINT</div>
+            <h2 class="panel-title">System Architecture</h2>
+            <p class="panel-desc">Split-process subsystem engineered for absolute zero latency and minimal footprint.</p>
+          </div>
+
+          <div class="architecture-layout">
+            
+            <!-- Signal Pipeline Diagram -->
+            <div class="arch-diagram-card">
+              <div class="arch-card-header">
+                <span class="arch-card-title">Real-Time Signal Pipeline</span>
+                <span class="arch-card-badge">WASAPI Loop &bull; 50ms Polling</span>
+              </div>
+
+              <div class="signal-flow-box">
+                <div class="flow-step">
+                  <div class="step-badge">1. Active Endpoints</div>
+                  <div class="step-desc">Windows Core Audio Session Manager</div>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                  <div class="step-badge">2. Threshold Detector</div>
+                  <div class="step-desc">Peak Meter &gt; -30 dB Trigger</div>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step active-step">
+                  <div class="step-badge">3. Gain Interpolator</div>
+                  <div class="step-desc">Smooth Ramp to 40% Volume</div>
+                </div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">
+                  <div class="step-badge">4. Dynamic Restore</div>
+                  <div class="step-desc">1500ms Buffer &rarr; 100% Volume</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specs Grid -->
+            <div class="arch-specs-grid">
+              <div class="arch-spec-item">
+                <span class="spec-k">Subsystem</span>
+                <span class="spec-v">Native C# WASAPI Engine + Electron & React HUD</span>
+              </div>
+              <div class="arch-spec-item">
+                <span class="spec-k">CPU Overhead</span>
+                <span class="spec-v">0.0% Idle / &lt; 0.1% Active Gain Ramp</span>
+              </div>
+              <div class="arch-spec-item">
+                <span class="spec-k">Memory Footprint</span>
+                <span class="spec-v">&lt; 15 MB RSS Background Resident</span>
+              </div>
+              <div class="arch-spec-item">
+                <span class="spec-k">Telemetry &amp; Privacy</span>
+                <span class="spec-v">100% Offline &bull; Zero Network Sockets &bull; MIT License</span>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
-
-      <!-- Retro Dot-Matrix Display Headline -->
-      <h1 class="headline anim">
-        <span class="headline-line line-1">AUDIO DUCKING</span>
-        <span class="headline-line line-2">DESIGNED TO EVOLVE</span>
-      </h1>
-
-      <!-- Precise Subheading -->
-      <p class="subhead anim" style="--d: 0.28s">
-        Automatically ducks background music in Spotify and Apple Music when videos or voice calls play audio, then seamlessly restores it in real time.
-      </p>
-
-      <!-- High-Glow CTA Button -->
-      <div class="cta-wrap anim" style="--d: 0.4s">
-        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="cta-btn">
-          Download for Windows
-        </a>
-      </div>
+      </section>
 
     </main>
 
