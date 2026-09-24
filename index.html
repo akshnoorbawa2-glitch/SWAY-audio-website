@@ -2,491 +2,167 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sway — Intelligent Audio Ducking for Windows</title>
-  <meta name="description" content="Sway automatically lowers background music when browser media, voice calls, or games play audio, and gracefully restores it when they finish.">
-  
-  <!-- Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sway — Intelligence Designed To Evolve</title>
+  <meta name="description" content="Sway is an intelligent background audio ducking utility for Windows. Automatically lowers music when videos or calls play, and gracefully restores it in real time.">
+
+  <!-- Inter UI Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- BubbledotICG-FinePos Retro Dot-Matrix Display Font -->
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.2 Brands & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Navigation -->
-  <header class="navbar">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="#" class="brand-link">
-          <div class="brand-symbol">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="12" x2="8" y2="12"/>
-              <line x1="10" y1="6" x2="14" y2="18"/>
-              <line x1="16" y1="10" x2="20" y2="14"/>
-            </svg>
+  <!-- Full-Viewport Cover Video Background -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline preload="auto">
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+
+  <!-- Main Viewport Composition -->
+  <div class="page">
+    
+    <!-- 1) Header Region -->
+    <header class="header">
+      <a href="#" class="logo-btn" aria-label="Sway Home">
+        <img src="assets/logo.svg" alt="" width="52" height="52" class="logo-img">
+      </a>
+
+      <!-- Desktop Nav Pill -->
+      <nav class="nav-pill" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+      </nav>
+
+      <!-- Desktop Action Pill -->
+      <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="action-pill">
+        Download v1.0
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="burger-btn" id="burgerBtn" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+    </header>
+
+    <!-- Mobile Navigation Sheet & Backdrop -->
+    <div class="mobile-overlay" id="mobileOverlay" hidden></div>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav class="mobile-nav-links">
+        <a href="#home" class="mobile-link active">Home</a>
+        <a href="#features" class="mobile-link">Features</a>
+        <a href="#architecture" class="mobile-link">Architecture</a>
+        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="mobile-link">GitHub</a>
+      </nav>
+      <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="mobile-action-pill">
+        Download for Windows
+      </a>
+    </div>
+
+    <!-- 2) Hero Center Region -->
+    <main class="hero">
+      
+      <!-- Trust Badge with Overlapping Inner Logo Disks -->
+      <div class="trust-row anim" style="--d: 0.05s">
+        <div class="trust-avatars">
+          <div class="trust-avatar avatar-1" title="Spotify">
+            <div class="avatar-inner">
+              <i class="fa-brands fa-spotify"></i>
+            </div>
           </div>
-          <span class="brand-title">Sway</span>
+          <div class="trust-avatar avatar-2" title="Discord">
+            <div class="avatar-inner">
+              <i class="fa-brands fa-discord"></i>
+            </div>
+          </div>
+          <div class="trust-avatar avatar-3" title="YouTube">
+            <div class="avatar-inner">
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+          </div>
+        </div>
+        <div class="trust-pill">
+          <span>Trusted by 10,000+ Listeners</span>
+        </div>
+      </div>
+
+      <!-- Retro Dot-Matrix Display Headline -->
+      <h1 class="headline anim">
+        <span class="headline-line line-1">AUDIO DUCKING</span>
+        <span class="headline-line line-2">DESIGNED TO EVOLVE</span>
+      </h1>
+
+      <!-- Precise Subheading -->
+      <p class="subhead anim" style="--d: 0.28s">
+        Automatically ducks background music in Spotify and Apple Music when videos or voice calls play audio, then seamlessly restores it in real time.
+      </p>
+
+      <!-- High-Glow CTA Button -->
+      <div class="cta-wrap anim" style="--d: 0.4s">
+        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="cta-btn">
+          Download for Windows
         </a>
       </div>
 
-      <nav class="nav-center">
-        <a href="#why-sway">Why Sway</a>
-        <a href="#features">Features</a>
-        <a href="#specs">Specifications</a>
-        <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">GitHub</a>
-      </nav>
+    </main>
 
-      <div class="nav-right">
-        <a href="#download" class="btn btn-nav">Download for Windows</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container hero-container">
-      
-      <div class="hero-header">
-        <div class="announcement-pill">
-          <span class="pill-dot"></span>
-          <span class="pill-text">Sway for Windows v1.0.0</span>
-          <span class="pill-arrow">&rarr;</span>
-        </div>
-
-        <h1 class="hero-headline">
-          Intelligent background<br>
-          audio ducking for Windows.
-        </h1>
-
-        <p class="hero-subtext">
-          Sway automatically lowers music in Spotify and Apple Music when browser videos or voice calls play sound, then seamlessly fades volume back when playback finishes.
-        </p>
-
-        <div class="hero-cta-group">
-          <a href="#download" class="btn btn-primary btn-lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download for Windows
-          </a>
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
-            View on GitHub
-          </a>
-        </div>
-
-        <div class="hero-meta-row">
-          <span>Windows 10 & 11 (64-bit)</span>
-          <span>&bull;</span>
-          <span>Lightweight 1.2 MB</span>
-          <span>&bull;</span>
-          <span>Open Source (MIT)</span>
-        </div>
-      </div>
-
-      <!-- Linear-Grade Product Showcase: Real-Time Soundstage Envelope -->
-      <div class="soundstage-showcase" id="showcase">
-        <div class="soundstage-header">
-          <div class="soundstage-label-group">
-            <span class="section-label">ACOUSTIC DYNAMICS</span>
-            <h3 class="soundstage-title">Continuous gain interpolation in real time.</h3>
-          </div>
-          <div class="soundstage-badge">
-            <span class="badge-dot"></span>
-            <span>Live WASAPI Gain Envelope</span>
-          </div>
-        </div>
-
-        <div class="soundstage-canvas-frame">
-          <div class="canvas-top-meta">
-            <div class="channel-indicator music">
-              <span class="channel-dot music"></span>
-              <span class="channel-name">Background Music (Spotify / Apple Music)</span>
-              <span class="channel-val" id="music-db-val">0 dB (100%)</span>
-            </div>
-            <div class="channel-indicator trigger">
-              <span class="channel-dot trigger"></span>
-              <span class="channel-name">Dialogue Trigger (YouTube / Meeting)</span>
-              <span class="channel-val" id="trigger-state-val">Monitoring</span>
-            </div>
-          </div>
-
-          <!-- Dynamic Audio Graph / Interactive Soundstage -->
-          <div class="acoustic-graph-viewport">
-            <svg class="acoustic-svg" viewBox="0 0 900 240" fill="none" preserveAspectRatio="none">
-              <!-- Grid Lines -->
-              <line x1="0" y1="40" x2="900" y2="40" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4"/>
-              <line x1="0" y1="120" x2="900" y2="120" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4"/>
-              <line x1="0" y1="200" x2="900" y2="200" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4 4"/>
-              
-              <!-- Shaded Attenuation Zone -->
-              <path d="M 280,40 L 420,160 L 680,160 L 800,40 Z" fill="rgba(94, 106, 210, 0.06)"/>
-
-              <!-- Dialogue Trigger Curve (Green) -->
-              <path class="curve-trigger" d="M 0,220 L 260,220 C 275,220 280,50 300,50 L 660,50 C 675,50 680,220 700,220 L 900,220" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
-
-              <!-- Music Gain Curve (Blue/Violet with smooth interpolation ramp) -->
-              <path class="curve-music" d="M 0,40 L 260,40 C 300,40 380,160 420,160 L 680,160 C 720,160 760,40 800,40 L 900,40" stroke="#5e6ad2" stroke-width="3" stroke-linecap="round"/>
-
-              <!-- Interactive Timeline Playhead Cursor -->
-              <line class="timeline-cursor" id="timeline-cursor" x1="450" y1="10" x2="450" y2="230" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-dasharray="2 2"/>
-            </svg>
-
-            <!-- Annotation Pills positioned along the envelope -->
-            <div class="envelope-marker marker-full-1" style="left: 12%;">
-              <span class="marker-tag">100% Volume (0 dB)</span>
-              <span class="marker-sub">Full dynamic range</span>
-            </div>
-
-            <div class="envelope-marker marker-duck" style="left: 54%;">
-              <span class="marker-tag duck">Sway Ducking Window (-8 dB)</span>
-              <span class="marker-sub">40% volume &bull; Speech prioritized</span>
-            </div>
-
-            <div class="envelope-marker marker-full-2" style="left: 88%;">
-              <span class="marker-tag">Restored (0 dB)</span>
-              <span class="marker-sub">Smooth 1000ms return</span>
-            </div>
-          </div>
-
-          <!-- Bottom Metric Readouts Bar -->
-          <div class="soundstage-metrics-row">
-            <div class="metric-block">
-              <span class="metric-num">1000 ms</span>
-              <span class="metric-desc">Fade Ramp Duration</span>
-            </div>
-            <div class="metric-block">
-              <span class="metric-num">+12.4 dB</span>
-              <span class="metric-desc">Dialogue Separation</span>
-            </div>
-            <div class="metric-block">
-              <span class="metric-num">&lt; 1.2 ms</span>
-              <span class="metric-desc">Direct WASAPI Sampling</span>
-            </div>
-            <div class="metric-block">
-              <span class="metric-num">0.0%</span>
-              <span class="metric-desc">Harmonic Clipping</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Editorial Manifesto / Why Sway Section -->
-  <section class="section section-editorial" id="why-sway">
-    <div class="container">
-      
-      <div class="editorial-masthead">
-        <span class="editorial-label">WHY SWAY</span>
+    <!-- 3) Stats Footer Region (4 Real-Time Metrics) -->
+    <footer class="stats-footer">
+      <div class="stats-grid">
         
-        <h2 class="editorial-statement">
-          You shouldn't have to pause your flow just to watch a ten-second video.
-        </h2>
-        
-        <p class="editorial-support">
-          Most desktop audio controls force you to constantly switch between windows, ride volume sliders, and mute tabs. Sway operates on a simple belief: your operating system should intelligently balance your music and media without you ever having to think about it.
-        </p>
-      </div>
-
-      <div class="editorial-principles-grid">
-        
-        <div class="principle-column">
-          <div class="principle-num">01</div>
-          <h3 class="principle-title">AUTONOMY</h3>
-          <p class="principle-body">
-            Zero manual switching. When you start playing a video or meeting audio, your music automatically steps aside. When audio finishes, it smoothly steps back.
-          </p>
+        <div class="stat-card anim" style="--d: 0.5s">
+          <div class="stat-icon">&lt;</div>
+          <div class="stat-value-group">
+            <span class="stat-num" data-target="1.2" data-decimals="1" data-suffix="ms">0</span>
+          </div>
+          <div class="stat-label">WASAPI Latency</div>
         </div>
 
-        <div class="principle-column">
-          <div class="principle-num">02</div>
-          <h3 class="principle-title">RESTRAINT</h3>
-          <p class="principle-body">
-            Built to be invisible. Sway lives silently in the background with zero popups, zero network telemetry, and 0.0% CPU overhead when idle.
-          </p>
+        <div class="stat-card anim" style="--d: 0.58s">
+          <div class="stat-icon">%</div>
+          <div class="stat-value-group">
+            <span class="stat-num" data-target="99.99" data-decimals="2" data-suffix="%">0</span>
+          </div>
+          <div class="stat-label">Zero Audio Clipping</div>
         </div>
 
-        <div class="principle-column">
-          <div class="principle-num">03</div>
-          <h3 class="principle-title">INTENTION</h3>
-          <p class="principle-body">
-            Selective precision. Only your chosen background music ducks. Voice chats, critical alerts, and games remain untouched at full volume.
-          </p>
+        <div class="stat-card anim" style="--d: 0.66s">
+          <div class="stat-icon">*</div>
+          <div class="stat-value-group">
+            <span class="stat-num" data-target="0.0" data-decimals="1" data-suffix="%">0</span>
+          </div>
+          <div class="stat-label">Idle CPU Overhead</div>
+        </div>
+
+        <div class="stat-card anim" style="--d: 0.74s">
+          <div class="stat-icon">#</div>
+          <div class="stat-value-group">
+            <span class="stat-num" data-target="14" data-decimals="0" data-suffix="MB">0</span>
+          </div>
+          <div class="stat-label">Memory Footprint</div>
         </div>
 
       </div>
+    </footer>
 
-    </div>
-  </section>
+  </div>
 
-  <!-- Precision Routing & Hotkey Features -->
-  <section class="section section-dark" id="features">
-    <div class="container">
-      
-      <div class="section-header-centered">
-        <div class="section-label">SYSTEM INTEGRATION</div>
-        <h2 class="section-title">Built with surgical precision.</h2>
-        <p class="section-desc">Designed as a high-performance Windows desktop utility without audio virtualization drivers.</p>
-      </div>
-
-      <div class="feature-card-grid">
-        
-        <!-- Feature 1: Targeted Process Routing -->
-        <div class="feature-card">
-          <div class="feature-card-header">
-            <span class="feature-card-num">01</span>
-            <span class="feature-card-tag">Process Isolation</span>
-          </div>
-          <h3 class="feature-card-title">Targeted Application Routing</h3>
-          <p class="feature-card-body">
-            Sway isolates background media applications like Spotify, Apple Music, VLC, and Tidal. WhatsApp, Discord voice channels, Steam games, and system alerts stay at 100% volume.
-          </p>
-          
-          <div class="feature-mini-ui">
-            <div class="routing-row">
-              <span class="routing-app">spotify.exe</span>
-              <span class="routing-status duck">Ducked</span>
-            </div>
-            <div class="routing-row">
-              <span class="routing-app">discord.exe</span>
-              <span class="routing-status pass">Bypassed</span>
-            </div>
-            <div class="routing-row">
-              <span class="routing-app">steam.exe</span>
-              <span class="routing-status pass">Bypassed</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 2: Alt+Space Quick Launcher -->
-        <div class="feature-card">
-          <div class="feature-card-header">
-            <span class="feature-card-num">02</span>
-            <span class="feature-card-tag">Spotlight Interface</span>
-          </div>
-          <h3 class="feature-card-title">Alt+Space Quick Launcher</h3>
-          <p class="feature-card-body">
-            Press <kbd>Alt</kbd> + <kbd>Space</kbd> anywhere to search controls, toggle ducking rules, check active session meters, or exit the background engine instantly.
-          </p>
-
-          <div class="feature-mini-ui">
-            <div class="launcher-preview-bar">
-              <span class="launcher-search-icon">/</span>
-              <span class="launcher-search-text">Toggle Ducking Mode (Active)</span>
-              <kbd class="mini-kbd">Enter</kbd>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 3: Configurable Fading Curves -->
-        <div class="feature-card">
-          <div class="feature-card-header">
-            <span class="feature-card-num">03</span>
-            <span class="feature-card-tag">Linear Mathematics</span>
-          </div>
-          <h3 class="feature-card-title">Linear Fade Curves</h3>
-          <p class="feature-card-body">
-            Volume transitions are interpolated across configurable millisecond durations (default: 1000ms down, 1500ms restore delay, 1000ms up) to eliminate harsh volume snaps.
-          </p>
-
-          <div class="feature-mini-ui">
-            <div class="fade-metric-row">
-              <span class="metric-label">Fade Down:</span>
-              <span class="metric-val">1000ms</span>
-            </div>
-            <div class="fade-metric-row">
-              <span class="metric-label">Restore Delay:</span>
-              <span class="metric-val">1500ms</span>
-            </div>
-            <div class="fade-metric-row">
-              <span class="metric-label">Duck Target:</span>
-              <span class="metric-val">40% Volume</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 4: Zero Background Overhead -->
-        <div class="feature-card">
-          <div class="feature-card-header">
-            <span class="feature-card-num">04</span>
-            <span class="feature-card-tag">Native Subsystem</span>
-          </div>
-          <h3 class="feature-card-title">Native WASAPI Engine</h3>
-          <p class="feature-card-body">
-            Direct C# Windows Audio Session API communication. No virtual audio drivers, zero audio lag, no microphone permissions, and no external background servers.
-          </p>
-
-          <div class="feature-mini-ui">
-            <div class="fade-metric-row">
-              <span class="metric-label">CPU Usage:</span>
-              <span class="metric-val text-green">0.0% (Idle)</span>
-            </div>
-            <div class="fade-metric-row">
-              <span class="metric-label">Memory Footprint:</span>
-              <span class="metric-val text-green">&lt; 14 MB</span>
-            </div>
-            <div class="fade-metric-row">
-              <span class="metric-label">Telemetry:</span>
-              <span class="metric-val text-green">Zero / Offline</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Technical Specifications Matrix -->
-  <section class="section" id="specs">
-    <div class="container">
-      
-      <div class="specs-box">
-        <div class="specs-header">
-          <div class="section-label">ENGINEERING SPECIFICATIONS</div>
-          <h2 class="section-title">Built to stay invisible.</h2>
-          <p class="section-desc">Technical breakdown of the Sway audio ducking subsystem.</p>
-        </div>
-
-        <div class="specs-table">
-          
-          <div class="spec-cell">
-            <span class="spec-label">Operating System</span>
-            <span class="spec-value">Windows 10 & 11 (64-bit)</span>
-            <span class="spec-sub">Native Windows Audio Endpoint Sessions</span>
-          </div>
-
-          <div class="spec-cell">
-            <span class="spec-label">Audio Pipeline</span>
-            <span class="spec-value">WASAPI Direct Session Control</span>
-            <span class="spec-sub">Zero virtual soundcards or virtual drivers</span>
-          </div>
-
-          <div class="spec-cell">
-            <span class="spec-label">Memory Footprint</span>
-            <span class="spec-value">&lt; 14 MB RAM</span>
-            <span class="spec-sub">Headless C# subsystem architecture</span>
-          </div>
-
-          <div class="spec-cell">
-            <span class="spec-label">CPU Utilization</span>
-            <span class="spec-value">0.0% Idle</span>
-            <span class="spec-sub">Event-driven 50ms meter sampling</span>
-          </div>
-
-          <div class="spec-cell">
-            <span class="spec-label">Privacy &amp; Security</span>
-            <span class="spec-value">100% Offline</span>
-            <span class="spec-sub">No network requests, no telemetry, no analytics</span>
-          </div>
-
-          <div class="spec-cell">
-            <span class="spec-label">License</span>
-            <span class="spec-value">Open Source (MIT)</span>
-            <span class="spec-sub">Freely inspect and build from GitHub</span>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Download & Release Section -->
-  <section class="section section-download" id="download">
-    <div class="container">
-      
-      <div class="download-card">
-        <div class="download-card-inner">
-          <div class="announcement-pill">
-            <span class="pill-dot"></span>
-            <span class="pill-text">Latest Release v1.0.0</span>
-          </div>
-
-          <h2 class="download-title">Download Sway for Windows</h2>
-          <p class="download-desc">
-            Single portable standalone release for Windows 10 and 11 (64-bit). No installers, no background bloatware, no auto-updater daemons.
-          </p>
-
-          <div class="download-actions">
-            <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener" class="btn btn-primary btn-xl">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Download Sway-1.0.0-win-x64.exe
-            </a>
-          </div>
-
-          <div class="download-specs-bar">
-            <span>SHA-256 Verified Binary</span>
-            <span>&bull;</span>
-            <span>Windows 10 / 11 Compatible</span>
-            <span>&bull;</span>
-            <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">Source Code on GitHub</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Minimal Linear-Style Footer -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-top">
-        <div class="footer-brand-col">
-          <div class="brand-link">
-            <div class="brand-symbol">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="12" x2="8" y2="12"/>
-                <line x1="10" y1="6" x2="14" y2="18"/>
-                <line x1="16" y1="10" x2="20" y2="14"/>
-              </svg>
-            </div>
-            <span class="brand-title">Sway</span>
-          </div>
-          <p class="footer-tagline">Intelligent background audio ducking utility for Windows.</p>
-        </div>
-
-        <div class="footer-nav-col">
-          <span class="footer-col-title">Product</span>
-          <a href="#why-sway">Why Sway</a>
-          <a href="#features">Features</a>
-          <a href="#specs">Specifications</a>
-          <a href="#download">Download</a>
-        </div>
-
-        <div class="footer-nav-col">
-          <span class="footer-col-title">Resources</span>
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio" target="_blank" rel="noopener">GitHub Repository</a>
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/releases" target="_blank" rel="noopener">Releases &amp; Changelog</a>
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/blob/main/README.md" target="_blank" rel="noopener">Documentation</a>
-        </div>
-
-        <div class="footer-nav-col">
-          <span class="footer-col-title">Legal</span>
-          <a href="https://github.com/akshnoorbawa2-glitch/Sway-Audio/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
-          <span class="footer-note">100% Offline &bull; No Telemetry</span>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 Sway. Open source audio utility for Windows.</span>
-        <div class="footer-system-status">
-          <span class="status-dot-active"></span>
-          <span>Engine Build 1.0.0 Stable</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="app.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
